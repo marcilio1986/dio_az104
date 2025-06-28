@@ -2,7 +2,7 @@
 Preparatorio DIO AZ-104
 
 
-### Gerenciar identidades e governança do Azure (20%–25%)
+## Gerenciar identidades e governança do Azure (20%–25%)
 Gerenciar usuários e grupos do Microsoft Entra
 Criar usuários e grupos
 
