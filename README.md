@@ -36,7 +36,7 @@ Gerenciar custos usando alertas, orçamentos e recomendações do Assistente do 
 
 Configurar grupos de gerenciamento
 
-Implementar e gerenciar o armazenamento (15% a 20%)
+## Implementar e gerenciar o armazenamento (15% a 20%)
 Configurar o acesso ao armazenamento
 Configurar redes virtuais e firewalls do Armazenamento do Microsoft Azure
 
@@ -74,7 +74,7 @@ Configurar o gerenciamento do ciclo de vida de blobs
 
 Configurar o controle de versão de blobs
 
-Implantar e gerenciar os recursos de computação do Azure (20 a 25%)
+## Implantar e gerenciar os recursos de computação do Azure (20 a 25%)
 Automatizar a implantação de recursos usando modelos ou arquivos Bicep do ARM (Azure Resource Manager)
 Interpretar um modelo do Azure Resource Manager ou um arquivo Bicep
 
@@ -127,7 +127,7 @@ Definir configurações de rede para um serviço de aplicativo
 
 Configurar slots de implantação para um Serviço de Aplicativo
 
-Implementar e gerenciar redes virtuais (15–20%)
+## Implementar e gerenciar redes virtuais (15–20%)
 Configurar e gerenciar redes virtuais no Azure
 Criar e configurar redes virtuais e sub-redes
 
@@ -157,7 +157,7 @@ Configurar um balanceador de carga interno ou público
 
 Solucionar problemas de balanceamento de carga
 
-Monitorar e manter os recursos do Azure (10 a 15%)
+## Monitorar e manter os recursos do Azure (10 a 15%)
 Monitorar recursos no Azure
 Interpretar métricas no Azure Monitor
 
