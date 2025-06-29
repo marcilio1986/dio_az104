@@ -31,7 +31,7 @@ Os dados são registrados no Azure Monitor em um espaço de trabalho do Log Anal
 
 ## Que tipos de dados o Azure Monitor coleta?
 
-! [Tipos de Dados] https://turbo360.com/wp-content/uploads/2020/11/4-1.png
+! [Tipos de Dados] (https://turbo360.com/wp-content/uploads/2020/11/4-1.png)
 
 O diagrama a seguir oferece uma visão geral do Azure Monitor. À esquerda, estão as fontes de dados de monitoramento: Azure, sistemas operacionais e fontes personalizadas. No centro do diagrama, estão os armazenamentos de dados para métricas e logs. À direita, estão as funções que o Azure Monitor executa com esses dados coletados, como análise, alertas e streaming para sistemas externos.
 
