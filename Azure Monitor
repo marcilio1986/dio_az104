@@ -1,0 +1,192 @@
+Visão geral do monitoramento do Azure
+Os aplicativos implantados no Azure são desenvolvidos sobre uma arquitetura compartimentada e extremamente dinâmica. É inevitável monitorar os aplicativos e serviços para maximizar a disponibilidade, o desempenho, a confiabilidade e o consumo.
+
+Tradicionalmente, a Microsoft sempre se destacou no fornecimento de serviços de plataforma de nível empresarial para executar aplicativos altamente escaláveis ​​e confiáveis. Do ponto de vista de monitoramento e gerenciamento, eles não têm grandes histórias para destacar. Monitorar um ambiente do Azure usando ferramentas próprias pode ser uma tarefa desafiadora até mesmo para a equipe mais qualificada e experiente, devido à complexidade e sobreposição de suas ofertas. Em certos casos, há mais de uma ferramenta que faz a mesma coisa que as outras.
+
+Se você tentou configurar o monitoramento no portal do Azure, pode ter se deparado com uma situação em que uma ferramenta A exigiria o monitoramento de um recurso R, mas se você quiser realizar outra atividade de monitoramento no mesmo recurso R, precisará usar a ferramenta B. Isso certamente pode causar frustração ao usuário.
+
+Início rápido
+O Microsoft Azure oferece uma solução robusta de alerta e monitoramento: o Azure Monitor. O Azure Monitor maximiza o fornecimento e o desempenho de seus aplicativos e serviços, oferecendo uma solução inclusiva para coletar, analisar e trabalhar com telemetria nos ambientes de nuvem e locais do usuário.
+
+O que é o Azure Monitor?
+O Azure Monitor é uma poderosa ferramenta de geração de relatórios e análises. Ele maximiza a disponibilidade e o desempenho dos seus aplicativos, oferecendo uma solução abrangente para coletar, analisar e atuar com base na telemetria dos seus ambientes de nuvem e locais. Ele ajuda você a entender o desempenho dos seus aplicativos e identifica proativamente os problemas que os afetam e os recursos dos quais dependem. Use-o para obter insights sobre o comportamento e a execução do seu ambiente e dos seus aplicativos. Você pode então responder proativamente às falhas no seu sistema.
+
+Como o Azure Monitor funciona?
+O Azure Monitor recebe dados de recursos de destino, como aplicativos, sistemas operacionais, recursos do Azure, assinaturas do Azure e locatários do Azure. A natureza do recurso define quais tipos de dados estão disponíveis. Um tipo de dado pode ser uma métrica, um log ou uma métrica e um log. Esses dados podem ser processados ​​posteriormente para executar diferentes funções, como análise, visualização, alertas, automação e integrações.
+
+O foco dos tipos de dados baseados em métricas são os valores numéricos sensíveis ao tempo que representam algum aspecto do recurso de destino.O foco dos tipos de dados baseados em log é a consulta de dados de conteúdo mantidos em arquivos de log estruturados e baseados em registros que são relevantes para o recurso de destino.
+Métricas
+Métricas são medidas de determinadas características de um recurso ao longo de um determinado período. Por exemplo, utilização da CPU, IOPS de disco, número de conexões, etc. Normalmente, são em tempo real e, como são armazenadas como valores com um intervalo de coleta padrão, são ideais para visualização em gráficos, ajudando a visualizar os resultados ao longo do tempo.
+
+Métricas são valores numéricos que descrevem algum aspecto de um sistema em um determinado momento. O Azure Monitor pode capturar métricas quase em tempo real. As métricas são coletadas em intervalos regulares e são úteis para alertas devido à sua amostragem frequente. Você pode usar diversos algoritmos para comparar uma métrica com outras métricas e observar tendências ao longo do tempo.
+
+As métricas são armazenadas em um banco de dados de séries temporais. Esse armazenamento de dados é mais eficaz para analisar dados com registro de data e hora. As métricas são adequadas para alertas e detecção rápida de problemas. Elas podem informar sobre o desempenho do sistema. Se necessário, você pode combiná-las com logs para identificar a causa raiz dos problemas.
+
+Registros
+Os logs contêm informações com registro de data e hora sobre alterações feitas em recursos. O tipo de informação registrada varia de acordo com a origem do log. Os dados do log são organizados em registros, com diferentes conjuntos de propriedades para cada tipo de registro. Os logs podem incluir valores numéricos, como métricas do Azure Monitor, mas a maioria inclui dados de texto em vez de valores numéricos.
+
+O tipo mais comum de entrada de log registra um evento. Os eventos podem ocorrer esporadicamente, em vez de em intervalos fixos ou de acordo com uma programação. Os eventos são criados por aplicativos e serviços, que fornecem o contexto para os eventos. Você pode armazenar dados de métricas em logs para combiná-los com outros dados de monitoramento para análise.
+
+Os dados são registrados no Azure Monitor em um espaço de trabalho do Log Analytics. O Azure fornece um mecanismo de análise e uma linguagem de consulta avançada. Os logs mostram o contexto de quaisquer problemas e são úteis para identificar as causas raiz. Os dados dos logs podem ser obtidos usando sua linguagem de consulta nativa, "Kusto Query Language", ou KQL. Os usuários podem então usar essas consultas para criar visualizações úteis que podem ser fixadas em painéis.
+
+## Que tipos de dados o Azure Monitor coleta?
+
+! [Tipos de Dados] https://turbo360.com/wp-content/uploads/2020/11/4-1.png
+
+O diagrama a seguir oferece uma visão geral do Azure Monitor. À esquerda, estão as fontes de dados de monitoramento: Azure, sistemas operacionais e fontes personalizadas. No centro do diagrama, estão os armazenamentos de dados para métricas e logs. À direita, estão as funções que o Azure Monitor executa com esses dados coletados, como análise, alertas e streaming para sistemas externos.
+
+Os dados podem ser obtidos de diversas fontes por meio do Azure Control. Os usuários podem optar por monitorar dados em diferentes níveis no aplicativo, em qualquer sistema operacional e nos recursos dos quais ele depende, incluindo a própria plataforma. Para cada um dos seguintes níveis, o Azure Monitor coleta os dados:
+
+Dados do aplicativo: Dados relacionados ao código do aplicativo personalizado. São os dados sobre o desempenho e a funcionalidade do código que você escreveu, independentemente do meio em que está inserido.
+
+Dados do sistema operacional: dados referentes ao sistema operacional no qual o aplicativo está sendo executado, ou seja, dados das máquinas virtuais Windows ou Linux que hospedam seu aplicativo. Ele pode ser executado no Azure, em outra nuvem ou no local.
+
+Dados de recursos do Azure: dados relacionados às operações de um recurso do Azure, como um aplicativo Web ou um balanceador de carga.
+
+Dados de monitoramento de assinatura do Azure: dados relacionados à assinatura e também incluem dados sobre a integridade e a disponibilidade do Azure.
+
+Dados de monitoramento de locatários do Azure: dados sobre os serviços de nível organizacional do Azure, como o Azure Active Directory.
+
+Como o Azure Monitor é um sistema automático, ele começa a coletar dados dessas fontes assim que você cria recursos do Azure, como máquinas virtuais e aplicativos web. Você pode estender os dados coletados pelo Azure Monitor das seguintes maneiras:
+
+Habilitando o diagnóstico : para alguns recursos, como o Banco de Dados SQL do Azure , você só recebe informações completas sobre um recurso após habilitar o log de diagnóstico. Você pode usar o portal do Azure, a CLI do Azure ou o PowerShell para habilitar o diagnóstico.Adicionando um agente : Para máquinas virtuais, você pode instalar o agente do Log Analytics e configurá-lo para enviar dados para um espaço de trabalho do Log Analytics. Este agente aumenta a quantidade de informações enviadas ao Azure Monitor.
+Como a Microsoft posiciona o Azure Monitor?
+Como iniciante, é bom saber que o Azure Monitor é o plano central para todos os conjuntos de ferramentas de monitoramento e é recomendável adquirir o hábito de começar com o Azure Monitor, mesmo se você quiser analisar métricas, Application Insights, etc.
+
+Inicialmente, a Microsoft planeja tornar o Azure Monitor o ponto de partida centralizado para todos os conjuntos de ferramentas de monitoramento do Azure. Evidentemente, alguns dos outros conjuntos de ferramentas de monitoramento estão sendo mesclados/integrados ao Azure Monitor como um todo!
+
+Azure Monitor – Requisitos Principais
+Os sistemas em nuvem são altamente distribuídos, o que significa que existem muitos canais produzindo dados a qualquer momento. Além disso, esses sistemas são incrivelmente voláteis, o que significa que, por exemplo, se os recursos estiverem em contêineres, será necessário pensar em uma maneira de combater a complexidade dinâmica dos contêineres para poder continuar com os dados. Além disso, mesmo um ambiente Azure de pequeno a médio porte produz um grande volume de dados, e o cenário se torna ainda mais complexo.
+
+A solução na qual os usuários do Azure confiam para monitorar e solucionar problemas de aplicativos para resolver esses problemas deve fornecer a eles os seguintes recursos simples:
+
+Agregação de dados - Os usuários precisam ser capazes de visualizar e incorporar todas as fontes de dados perfeitamente por meio de seu ambiente do Azure, capturar os dados gerados, sejam logs ou medições, e armazenar essas informações em um armazenamento de dados centralizado.
+
+Ingestão de dados - Os pipelines de dados são responsáveis ​​por processar grandes volumes de dados que podem sofrer uma pressão considerável em determinadas situações, resultando na falha de componentes. Os transportadores de dados devem ser construídos para serem resilientes o suficiente para acomodar quantidades enormes e flutuantes de dados, bem como os serviços de backend de armazenamento para os quais enviam os dados.
+
+Armazenamento de dados - Os dados obtidos de várias fontes de dados do Azure devem ser armazenados em um repositório de dados consolidado capaz de fornecer a escala necessária para suportar o crescimento e o pico de dados. Ao diagnosticar um problema de produção, a última coisa que você quer é um repositório de dados com falha por ter excedido a capacidade.
+
+Processamento de dados - Se você não puder processar os dados armazenados, será mais difícil interpretá-los. Uma solução de monitoramento do Azure, por exemplo, precisa ser capaz de processar campos contendo IPs e aumentá-los com informações geográficas. É mais fácil consultar e visualizar dados se eles forem analisados ​​e analisados ​​corretamente.
+
+Análise de dados - Os usuários finais devem ser capazes de interpretar os dados de monitoramento do Azure com eficiência. A capacidade de pesquisar ou consultar os dados é um pré-requisito fundamental. Com visualizações e painéis, a capacidade de examinar os dados de diferentes perspectivas é outro requisito fundamental. Idealmente, para um processamento sem complicações, os usuários devem ser capazes de usar recursos avançados de análise, como detecção de anomalias e aprendizado de máquina.
+
+Alertas - Para estar ciente de problemas com o ambiente do Azure, o usuário deve ser capaz de disparar alertas que os atualizarão em tempo real. Isso facilita para os consumidores estarem mais informados e a par dos incidentes à medida que eles surgem.
+
+Conceitos
+O que você pode monitorar?
+Com o Azure Monitor em mãos, o usuário do Azure pode obter os seguintes serviços monitorados,
+
+Insights e Soluções Essenciais
+Insights e soluções principais são visualizados como parte do Azure Monitor e atendem aos acordos de nível de serviço e suporte do Azure.
+
+Insights: Os Insights oferecem uma experiência de monitoramento personalizada para aplicativos e serviços específicos. Eles reúnem todos os logs e métricas e os analisam.
+
+Soluções principais: as soluções são baseadas em consultas e visualizações de logs personalizadas para um determinado aplicativo ou serviço. Elas apenas compilam e revisam logs e são descontinuadas em favor de insights ao longo do tempo.
+
+Serviços do Azure
+Os Serviços do Azure são os recursos oferecidos pelo Microsoft Azure, como o Azure Active Directory, Aplicativos Lógicos, Filas e Tópicos do Service Bus, Hubs de Eventos, Grades de Eventos, Aplicativos de Função, etc. Abaixo estão os dados ou parâmetros que são habilitados para os serviços do Azure para monitoramento.
+
+Métricas: o serviço coleta métricas automaticamente nas Métricas do Azure Monitor.Logs: O serviço oferece suporte a configurações de diagnóstico que reúnem logs e métricas da plataforma nos Logs do Azure Monitor.Insight: um insight está disponível para serviços com uma experiência de monitoramento personalizada.
+Agentes de Máquina Virtual
+O agente da máquina virtual recebe dados do sistema operacional convidado da máquina virtual e os envia ao monitor. Cada agente pode coletar dados diferentes e enviá-los para Métricas ou Logs.
+
+Integrações de produtos
+O produto/serviço salva os dados no espaço de trabalho do Log Analytics para que eles possam ser analisados ​​juntamente com outros dados de log obtidos pelo Azure Monitor.
+
+Outras Soluções
+Para o monitoramento de diversos aplicativos e serviços, existem outras soluções disponíveis, mas a implementação bem-sucedida foi interrompida e pode não estar disponível em todas as regiões. O acordo de nível de serviço de ingestão de dados do Azure Log Analytics as abrange.
+
+Monitoramento contínuo
+O monitoramento contínuo refere-se ao mecanismo e às tecnologias necessárias para implementar o monitoramento em cada ponto das suas operações de DevOps e TI. Da implementação à produção, ajuda a manter constantemente a saúde, a eficiência e a funcionalidade da sua aplicação e infraestrutura. O monitoramento contínuo baseia-se nos princípios de Integração Contínua e Implantação Contínua (CI/CD), que permitem projetar e executar aplicações de forma mais eficiente e consistente para fornecer valor contínuo aos seus clientes.
+
+O Azure Monitor é a solução de gerenciamento centralizada do Azure, que oferece observabilidade completa em softwares e redes na nuvem e no local.
+
+Plataforma de Dados
+O Azure Monitor reúne e agrega dados em uma plataforma de dados compartilhada de vários
+fontes onde pode ser usado para análise, visualização e alertas. Oferece uma experiência integrada com dados de várias fontes, proporcionando visualizações detalhadas de todos os seus recursos rastreados e até mesmo dados de outros serviços armazenados no Azure Monitor.
+
+Os três fundamentos da observabilidade são geralmente chamados de métricas, logs e rastreamentos distribuídos. Essas são as diversas formas de dados que devem ser coletadas e analisadas por uma ferramenta de observabilidade do Azure para fornecer observabilidade adequada de um sistema monitorado.
+
+Fontes de dados
+Existem diferentes fontes de dados de monitoramento coletados pelo Azure Monitor, além dos dados de monitoramento criados pelos recursos do Azure, eles são
+
+Níveis de aplicaçãoLocatário do AzureAssinatura do AzureAssinatura do AzureRecursos do AzureSistema operacional (convidado)Código do aplicativoSoluções e Insights de MonitoramentoFontes personalizadasOutros serviços
+Alertas
+No Azure Monitor, os alertas notificam você proativamente quando problemas são detectados em sua infraestrutura ou aplicativo usando seus dados de monitoramento. Antes que os usuários do seu sistema os percebam, eles permitem que você identifique e solucione problemas. As regras de alerta são separadas dos alertas e das ações tomadas quando um alerta é disparado. A regra de alerta consegue capturar o alvo e os critérios do alerta. É possível ter a regra de alerta em um estado habilitado ou desabilitado. Os alertas são disparados somente quando habilitados.
+
+Alertas de Métricas
+Alertas de métrica são usados ​​para atingir o monitoramento regular dos limites dos recursos do Azure. O Azure Monitor executa condições de gatilho de alerta de métrica em intervalos regulares. Quando a avaliação é verdadeira, o Azure Monitor envia uma notificação. Os alertas de métrica são stateful, e o Azure Monitor enviará uma notificação somente quando as condições de pré-requisito forem atendidas. Alertas de métrica podem ser úteis se, por exemplo, você precisar saber quando a utilização da CPU do seu servidor está atingindo um limite crítico de 90%. Você pode ser alertado quando o armazenamento do seu banco de dados estiver muito baixo ou quando a latência da rede estiver prestes a atingir níveis inaceitáveis.
+
+Alertas de log
+Os alertas de log usam dados de log para avaliar a lógica da regra e, se necessário, disparar um alerta. Esses dados podem vir de qualquer recurso do Azure: logs de servidor, logs de servidor de aplicativos ou logs de aplicativos. Por natureza, os dados de log são históricos, portanto, o uso é focado em análises e tendências. Esses tipos de logs podem ser usados ​​para avaliar se algum dos seus servidores excedeu a utilização da CPU em um determinado limite nos últimos 30 minutos. Ou você pode avaliar os códigos de resposta emitidos no seu servidor de aplicativos web na última hora.
+
+Alertas de registro de atividades
+Os alertas de log de atividades permitem que você seja notificado quando um evento específico ocorrer em algum recurso do Azure. Por exemplo, você pode ser notificado quando alguém criar uma nova VM em uma assinatura. Um log de atividades também pode incluir alertas sobre a integridade do serviço do Azure. Os alertas de log de atividades são projetados para funcionar com recursos do Azure. Normalmente, você cria esse tipo de log para receber notificações quando alterações específicas ocorrerem em um recurso da sua assinatura do Azure.
+
+Escolha a solução de monitoramento para solução de integração nativa em nuvem
+As Ferramentas de Monitoramento do Azure desempenham um papel fundamental em todos os fóruns, desde pequenas empresas até grandes corporações. É uma das métricas priorizadas, pois é essencial monitorar os diversos componentes integrados a um aplicativo de negócios para entender se estão funcionando conforme o esperado. Por outro lado, também é valioso para identificar os erros no momento certo e corrigi-los, para que a organização tenha um funcionamento saudável.
+
+Ferramentas de monitoramento nativas do Azure
+O próprio Azure oferece ferramentas práticas de monitoramento nativo para garantir que você crie sua integração com o Azure e a monitore sob o mesmo teto. Abaixo estão listadas as ferramentas de monitoramento nativas oferecidas pelo Azure:
+
+Registros de atividades
+O Log de Atividades do Azure é um log de Assinatura que fornece informações sobre eventos de nível de Assinatura criados no Azure. Ele incorpora uma gama de informações, desde informações operacionais do Azure Resource Manager até atualizações de eventos de Integridade do Serviço. Pode ser necessário arquivar o Log de Atividades do Azure caso você o mantenha por mais de 90 dias para governança, análise e backups.
+
+Análise de Logs
+O Azure Log Analytics Workspace é a unidade de armazenamento lógico onde os dados de log são coletados e armazenados. Ele pode ser considerado a principal unidade de gerenciamento dos Logs do Azure Monitor. Ele é usado para coletar dados de diversas fontes, como Máquinas Virtuais do Azure, Máquinas Virtuais Windows ou Linux, Recursos do Azure em uma assinatura, etc. Ele facilita um serviço de monitoramento garantido para atender às necessidades de monitoramento do usuário.
+
+Alertas do Azure
+Alerta é um serviço de monitoramento oferecido pelo Azure Monitor que notifica o usuário proativamente quando são encontrados problemas com sua infraestrutura ou aplicativo, utilizando seus dados de monitoramento no Azure Monitor. Há três tipos de Alertas do Azure disponíveis:
+
+Alertas de Métricas: Esses alertas monitorarão os recursos do Azure com base em métricas específicas para cada recurso e alertarão o usuário sempre que houver uma violação com o valor limite configurado. Por exemplo, a métrica Contagem de mensagens de mensagens mortas para o Barramento de Serviço, Execução bem-sucedida para Aplicativos Lógicos do Azure.Alertas de log: esses alertas permitem que os usuários monitorem as consultas do Log Analytics avaliando os logs de recursos a cada frequência definida e acionem uma notificação com base nos valores retornados da consulta.Alertas do Log de Atividades: Os alertas do log de atividades enviarão um relatório de alerta sempre que ocorrer um novo evento no log de atividades que corresponda à condição especificada.
+Diagnóstico do Azure
+O Diagnóstico do Azure oferece recursos para exportar métricas e atividades de logs para outros recursos, permitindo monitoramento e manipulação personalizados. Esses logs de diagnóstico podem ser passados ​​para recursos como o Armazenamento do Azure, o espaço de trabalho do Log Analytics e os Hubs de Eventos para processamento posterior.
+
+Métricas do Azure
+Métricas são valores numéricos que descrevem algum aspecto de um sistema em um determinado momento. As métricas são coletadas em intervalos regulares e podem ser usadas para análise, visualização e monitoramento. Cada recurso do Azure oferece um amplo conjunto de métricas específicas para cada recurso, que podem ser usadas para criar gráficos e alertas.
+
+Serviço de Saúde
+O Azure Service Health mantém você informado sobre qualquer tempo de inatividade planejado. Devido à manutenção, alguns recursos e regiões podem sofrer algum impacto, e isso será informado aos usuários com antecedência para que possam agir adequadamente.
+
+A integridade do serviço do Azure contém três eventos que ajudam você a entender melhor alguns erros inesperados e tempos de inatividade planejados.
+
+Problemas de serviço – Contém relatórios dos problemas atuais que acontecem no Azure, como interrupções de serviço, etc. e até mesmo a solução da equipe de desenvolvimento do Azure também pode ser encontrada aquiManutenção planejada – Contém relatórios de serviços de manutenção planejada agendados pelo Azure e até mesmo relatórios de algumas soluções sobre como você pode obter menos impacto nesse tempo de inatividadeAvisos de saúde – relata problemas que exigem sua ação para evitar a interrupção do serviço
+Consultor do Azure
+O Azure Advisor é um consultor de nuvem personalizado que ajuda você a seguir as melhores práticas e dicas para otimizar suas implantações do Azure. Ele analisa as configurações de recursos e a telemetria de uso e recomenda as melhores soluções possíveis que podem ajudar você a melhorar a relação custo-benefício, o desempenho, a confiabilidade e a segurança dos seus recursos do Azure.
+
+Insights de Aplicativos do Azure
+O Application Insights é usado para monitorar aplicativos ativos e detectar e analisar problemas nos aplicativos. Ele pode detectar anomalias e foi projetado para melhorar o desempenho e a usabilidade.
+
+Ferramentas de monitoramento de terceiros do Azure
+Com as ferramentas de monitoramento nativas oferecidas pelo Azure, não é possível obter monitoramento personalizado ou monitoramento consolidado em nível de aplicativo. Para resolver esses problemas, temos algumas excelentes ferramentas de monitoramento do Azure de terceiros no mercado para complementar as brechas do Azure Monitor.
+
+Turbo360
+Embora o escopo do Turbo360 vá muito além do monitoramento, ele ajuda você a monitorar a saúde, a disponibilidade, o desempenho e as métricas operacionais. Depois de determinar onde o erro real ocorreu usando seus monitores integrados, ele ajuda a resolver o problema. Por exemplo, o reprocessamento de mensagens mortas para uma fila ou tópico após o acúmulo na fila.
+
+Dynatrace
+A Dynatrace reúne infraestrutura e nuvem, desempenho de aplicações e monitoramento de experiência digital em uma solução automatizada e completa, alimentada por inteligência artificial. A Dynatrace será útil principalmente para desenvolvedores que realizam monitoramento de aplicações, infraestrutura e nuvem.
+
+AppDynamics
+O AppDynamics oferece visibilidade completa do desempenho do seu aplicativo. Ele oferece monitoramento do usuário final, visibilidade da infraestrutura, monitoramento do desempenho do aplicativo e monitoramento do desempenho dos negócios.
+
+Datadog
+O Datadog é um serviço de monitoramento para aplicativos em múltiplas nuvens, fornecendo monitoramento de servidores, bancos de dados, ferramentas e serviços por meio de uma plataforma de análise de dados baseada em SaaS.
+
+Nova Relíquia
+A New Relic Infrastructure pode ser usada para monitorar seus serviços do Azure com base na consulta do usuário. A New Relic oferece serviços de monitoramento para aplicativos em nuvem, servidores, bancos de dados, contêineres e monitoramento de infraestrutura e nuvem.
+
+Complementando o Azure Monitor com o Turbo360
+É importante determinar o tipo de ferramenta de monitoramento necessária para o seu aplicativo do Azure. Analise se é simples o suficiente para avaliar o desempenho do aplicativo, se ele atende ao seu SLA, se a experiência do usuário é a esperada ou se você precisa encontrar erros no seu aplicativo no momento certo e corrigi- los usando uma ferramenta como o Turbo360 , que foi desenvolvida significativamente para melhorar a eficiência da sua equipe de operações e suporte na resolução de problemas.
+
+Monitoramento avançado do Azure com Turbo360
+Monitoramento multimétrico
+Uma das características que praticamente todas as soluções de monitoramento nativas e de terceiros têm em comum é o monitoramento de métricas. No entanto, uma característica única do Turbo360 é que ele oferece aos usuários suporte ao monitoramento de múltiplos recursos do Azure a partir do contexto do aplicativo, usando suas métricas/propriedades.
+
+Com isso, você pode examinar constantemente o estado/valor atual das métricas selecionadas em busca de violações. Se a violação persistir pelo período especificado, o número configurado de alertas será enviado aos Canais de Notificação configurados.
+
+Como o Turbo360 funciona em tempo real?
+No caso de arquiteturas do Azure com bom uso do Aplicativo Lógico e do Aplicativo de Funções do Azure, o monitor Turbo360 nos alertará sobre o status do recurso. No entanto, há chances de falha na execução do Aplicativo Lógico ou do Aplicativo de Funções. Durante essas falhas, o Turbo360 pode enviar um relatório de alerta em até 5 minutos após o ocorrido. O relatório de alerta enviado conterá as informações necessárias para a tomada de medidas proativas. Com a ferramenta em funcionamento, qualquer falha na orquestração devido a um erro na execução do Aplicativo Lógico ou do Aplicativo de Funções do Azure pode ser comunicada à equipe responsável, que tomará as medidas necessárias quase em tempo real.
+
+Vantagens adicionais notáveis:
+
+Configure o monitoramento usando modelos predefinidos para minimizar o esforço manualMonitore continuamente os serviços do Azure em diferentes métricas/propriedades sem custo adicionalHabilite a autocorreção para corrigir falhas de status em seus aplicativos e serviços do AzureConfigurar ação corretiva automotiva sempre que houver violação de limiteObtenha visibilidade em nível de aplicativo com relatórios de erros consolidados
